@@ -1,7 +1,7 @@
 from openai import OpenAI
 
 # OpenAI API Key
-f = open("naver-blog/env/openai_api.txt", 'r')
+f = open("blog/env/openai_api.txt", 'r')
 api_key = f.readline()
 f.close()
 
