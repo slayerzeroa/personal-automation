@@ -35,41 +35,52 @@ def upload_tistory(title, contents, url):
     password = f.readline()
     f.close()
 
-    # 셀레니움
-    service = Service(executable_path='blog/selenium/chromedriver.exe')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    action = ActionChains(driver)
+    n = 0
+    while n < 30:
+        time.sleep(2)
+        try:
+            # 셀레니움
+            service = Service(executable_path='blog/selenium/chromedriver.exe')
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+            action = ActionChains(driver)
 
-    # 1. 티스토리 로그인 접속
-    login_url = "https://www.tistory.com/auth/login"
-    driver.get(login_url)
+            # 1. 티스토리 로그인 접속
+            login_url = "https://www.tistory.com/auth/login"
+            driver.get(login_url)
 
-    time.sleep(2)
-    # 2. 카카오 로그인 접속
-    elem = driver.find_element(By.CLASS_NAME, 'txt_login')
-    elem.click()
+            time.sleep(2)
+            # 2. 카카오 로그인 접속
+            elem = driver.find_element(By.CLASS_NAME, 'txt_login')
+            elem.click()
 
-    time.sleep(2)
-    # 3. 아이디, 비밀번호 입력
-    elem_id = driver.find_element(By.NAME, 'loginId')
-    elem_id.click()
-    pyperclip.copy(id)
-    elem_id.send_keys(Keys.CONTROL, 'v')
-    time.sleep(1)
+            time.sleep(2)
+            # 3. 아이디, 비밀번호 입력
+            elem_id = driver.find_element(By.NAME, 'loginId')
+            elem_id.click()
+            pyperclip.copy(id)
+            elem_id.send_keys(Keys.CONTROL, 'v')
+            time.sleep(1)
 
-    elem_pw = driver.find_element(By.NAME, 'password')
-    elem_pw.click()
-    pyperclip.copy(password)
-    elem_pw.send_keys(Keys.CONTROL, 'v')
-    time.sleep(1)
+            elem_pw = driver.find_element(By.NAME, 'password')
+            elem_pw.click()
+            pyperclip.copy(password)
+            elem_pw.send_keys(Keys.CONTROL, 'v')
+            time.sleep(1)
 
-    # 4. 로그인 버튼 클릭
-    driver.find_element(By.CLASS_NAME, 'btn_g.highlight').click()
-    time.sleep(30)
+            # 4. 로그인 버튼 클릭
+            driver.find_element(By.CLASS_NAME, 'btn_g.highlight').click()
+            time.sleep(300)
 
-    # 5. 로그인 버튼 클릭
-    driver.find_element(By.CLASS_NAME, 'btn_agree').click()
-    time.sleep(5)
+                # 5. Authentic 버튼 클릭
+            driver.find_element(By.CLASS_NAME, 'btn_agree').click()
+            time.sleep(5)
+            
+            break
+        except:
+            n += 1
+            driver.close()
+
+
 
     # 6. 프로필 클릭
     driver.find_element(By.CLASS_NAME, 'thumb_profile').click()
@@ -127,3 +138,5 @@ def upload_tistory(title, contents, url):
     time.sleep(5)
     driver.find_element(By.ID, "publish-btn").click()
     time.sleep(5)
+
+upload_tistory('test', 'test', 'test')
