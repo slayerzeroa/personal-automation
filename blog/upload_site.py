@@ -27,12 +27,9 @@ import os
 import clipboard
 
 def upload_tistory(title, contents, url):
-    f = open('blog/env/tistory_id.txt', 'r')
-    id = f.readline()
-    f.close()
-
-    f = open('blog/env/tistory_password.txt', 'r')
-    password = f.readline()
+    f = open('blog/env/tistory_api.txt', 'r')
+    id = f.readline().strip()
+    password = f.readline().strip()
     f.close()
 
     n = 0
@@ -138,5 +135,3 @@ def upload_tistory(title, contents, url):
     time.sleep(5)
     driver.find_element(By.ID, "publish-btn").click()
     time.sleep(5)
-
-upload_tistory('test', 'test', 'test')
