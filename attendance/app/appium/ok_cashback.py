@@ -114,6 +114,10 @@ def start_ok_cashback():
     time.sleep(5)
     click_text(driver, "참여하기")
     time.sleep(5)
+    package_name = "com.skmc.okcashbag.home_google"
+    close_app(driver, package_name)
+    
+
 # if __name__ == "__main__":
 #     driver = get_driver()
 #     go_to_home_screen(driver)

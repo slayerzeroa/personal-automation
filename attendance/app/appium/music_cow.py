@@ -3,9 +3,8 @@ from selenium.webdriver.common.options import ArgOptions
 from appium.webdriver.common.appiumby import AppiumBy
 import time
 import datetime
-# from .tools import *
+from .tools import *
 
-import tools 
 
 def opening_close_button(driver):
     button = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
@@ -27,39 +26,40 @@ def click_attendance_button(driver):
 
 
 
-# def start_music_cow():
-#     # 드라이버 생성
-#     driver = get_driver()
+def start_music_cow():
+    # 드라이버 생성
+    driver = get_driver()
 
-#     # 실행 원하는 앱 패키지명
-#     package_name = "com.musicow.android"
+    go_to_home(driver)
 
-#     go_to_app(driver, package_name)
-#     time.sleep(10)
+    # 실행 원하는 앱 패키지명
+    package_name = "com.musicow.android"
 
-#     try:
-#         opening_close_button(driver)
-#     except:
-#         pass
+    go_to_app(driver, package_name)
+    time.sleep(10)
 
-#     click_text(driver, "더보기")
-#     time.sleep(10)
-#     click_text(driver, "뮤카 포인트")
-#     time.sleep(10)
+    try:
+        opening_close_button(driver)
+    except:
+        pass
 
-#     # 출석체크 메뉴 들어가기
-#     test = find_all_index(driver, 3)
-#     test[1].click()
-#     time.sleep(10)
+    click_text(driver, "더보기")
+    time.sleep(10)
+    click_text(driver, "뮤카 포인트")
+    time.sleep(10)
 
-#     # 출석체크 버튼 클릭
-#     click_attendance_button(driver)
-#     time.sleep(20)
+    # 출석체크 메뉴 들어가기
+    click_partial_text(driver, "출석체크")
+    time.sleep(10)
 
-#     # 앱 종료
-#     close_app(driver, package_name)
-#     time.sleep(5)
+    # 출석체크 버튼 클릭
+    click_attendance_button(driver)
+    time.sleep(20)
+
+    # 앱 종료
+    close_app(driver, package_name)
+    time.sleep(5)
 
 
-driver = tools.get_driver()
-tools.dump_ui_hierarchy(driver)
+# driver = tools.get_driver()
+# tools.dump_ui_hierarchy(driver)
